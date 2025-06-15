@@ -1,7 +1,7 @@
 // src/app/layout.js
 'use client'
 import { Geist, Geist_Mono } from 'next/font/google'
-import Navbar from './components/navbar'
+import Navbar from './components/Navbar'
 import './globals.css'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
