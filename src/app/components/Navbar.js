@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        <Link href="/" className="text-2xl font-bold text-blue-600">Mend</Link>
+        <Link href="/" className="text-2xl font-bold text-teal-600">Mend</Link>
         <div className="sm:hidden">
           <button onClick={() => setOpen(!open)}>
             <span className="text-2xl">{open ? '✕' : '☰'}</span>
@@ -19,9 +19,6 @@ export default function Navbar() {
 
         <div className={`sm:flex items-center space-x-6 ${open ? 'block' : 'hidden'}`}>
           <Link href="/" className="text-gray-700 hover:text-blue-600">Home</Link>
-          <Link href="/about" className="text-gray-700 hover:text-blue-600">About</Link>
-          <Link href="/help" className="text-gray-700 hover:text-blue-600">Help</Link>
-          <Link href="/contact" className="text-gray-700 hover:text-blue-600">Contact</Link>
 
           {session?.user ? (
             <>
