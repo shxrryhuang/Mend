@@ -1,14 +1,16 @@
+import Link from 'next/link'
+
 export default function ProjectsPage() {
   const projects = [
     {
-      title: "Portfolio 🌸 ",
+      title: "First project: Portfolio 🌸 ",
       description: "A personal website built with Next.js and Tailwind CSS",
-      link: "https://github.com/yourusername/portfolio"
+      link: "/"
     },
     {
       title: "Chat App",
       description: "A real-time chat application using Socket.io and React",
-      link: "https://github.com/yourusername/chat-app"
+      link: "/journalingapp"
     },
     {
       title: "E‑commerce Store",
