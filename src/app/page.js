@@ -1,50 +1,61 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
+'use client';
 
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
 export default function HomePage() {
-  const [showIntro, setShowIntro] = useState(false)
-  const [typedText, setTypedText] = useState('')
-  const fullText = 'Hello there! Welcome :)'
-
-  useEffect(() => {
-    setShowIntro(true)
-    
-    // Typewriter effect
-    let index = 0
-    const interval = setInterval(() => {
-      setTypedText(fullText.slice(0, index + 1))
-      index++
-      if (index === fullText.length) clearInterval(interval)
-    }, 100)
-
-    return () => clearInterval(interval)
-  }, [])
-
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-8 space-y-12">
-      {/* ✍️ Typewriter Heading */}
-      <h1 className="text-5xl font-bold">
-        {typedText}
-        <span className="border-r-2 animate-pulse inline-block ml-1" />
-      </h1>
-
-      {/* 💡 Fade-in intro */}
-      <p
-        className={`max-w-xl text-gray-700 text-center transition-opacity duration-1000 ${
-          showIntro ? 'opacity-100' : 'opacity-0'
-        }`}
+    <main className="min-h-screen bg-white text-gray-900 px-6 py-12 space-y-24">
+      {/* Hero Section */}
+      <motion.section
+        className="text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
       >
-        I’m Sherry, a software engineer passionate about building modern web apps with Next.js and Tailwind CSS.
-      </p>
+        <h1 className="text-5xl font-bold mb-4">Mend AI </h1>
+        <p className="text-lg text-gray-700">
+          Your private, always-there mental health companion.
+        </p>
+      </motion.section>
 
-      {/* 🛎️ Pulse Call-to-Action */}
-      <Link href="/projects" scroll={false}>
-        <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg animate-pulse hover:animate-none">
-          View My Projects
-        </button>
-      </Link>
+      {/* About Section */}
+      <motion.section
+        className="max-w-3xl mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+      >
+        <h2 className="text-3xl font-semibold mb-4">About Mend AI</h2>
+
+        <p className="mb-4 text-lg">
+          Sometimes you just need to let it out—no judgment, no pressure. That’s what Therapy AI is for.
+        </p>
+        <p className="mb-4 text-lg">
+          It listens when no one else is around, helps you untangle your thoughts, and reminds you that you’re not alone.
+        </p>
+        <p className="mb-4 text-lg">
+          Whether you're feeling overwhelmed, stuck, or just need a safe space, it's here—day or night.
+        </p>
+        <p className="mb-4 text-lg">
+          Built with empathy and privacy at its core, Therapy AI is support that never leaves your side.
+        </p>
+
+        <h3 className="text-2xl font-semibold mt-10 mb-4">Key Features</h3>
+        <ul className="list-disc list-inside space-y-2 text-lg text-gray-800">
+          <li>AI-powered journaling and reflection prompts</li>
+          <li>Emotion tracking and visualization</li>
+          <li>Guided CBT-based exercises</li>
+          <li>Mood check-ins and goal reminders</li>
+          <li>Secure, anonymous usage</li>
+        </ul>
+      </motion.section>
     </main>
-  )
+  );
 }
