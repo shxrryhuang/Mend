@@ -45,7 +45,8 @@ export default function HomePage() {
           View My Projects
         </button>
       </Link>
-
     </main>
+
+    
   )
 }

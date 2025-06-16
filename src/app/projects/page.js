@@ -1,7 +1,7 @@
 export default function ProjectsPage() {
   const projects = [
     {
-      title: "Portfolio Website",
+      title: "Portfolio 🌸 ",
       description: "A personal website built with Next.js and Tailwind CSS",
       link: "https://github.com/yourusername/portfolio"
     },
@@ -14,6 +14,26 @@ export default function ProjectsPage() {
       title: "E‑commerce Store",
       description: "An online store with cart, product pages, and Stripe checkout",
       link: "https://github.com/yourusername/ecommerce-store"
+    }, 
+   {
+    title: "Blog App",
+      description: "A blog application with user authentication and post management",
+      link: "https://github.com/yourusername/blog-app"
+    }, 
+    {
+      title: "Movie App",
+      description: "A movie recommendation app with user authentication and movie search",
+      link: "https://github.com/yourusername/movie-app"
+    },
+    {
+      title: "To-Do List",
+      description: "A simple to-do list application with user authentication and task management",
+      link: "https://github.com/yourusername/todo-list"
+    },
+    {
+      title: "Image Gallery",
+      description: "A photo gallery application with user authentication and image management",
+      link: "https://github.com/yourusername/image-gallery"
     }
   ];
 
@@ -31,7 +51,7 @@ export default function ProjectsPage() {
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              View on GitHub
+              Check me out!
             </a>
           </div>
         ))}
