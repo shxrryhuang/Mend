@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -140,8 +141,21 @@ export default function HomePage() {
         <p className="mb-4 text-lg text-center">
             Join today and start your journey towards better mental health.
         </p>
+
+        <Link
+        href="/signup"
+        className="inline-block mt-6 px-6 py-3 bg-teal-600 text-white text-sm font-medium rounded-full hover:bg-teal-700 transition"
+        >
+        Get Started For Free
+        </Link>
+
         </motion.section>
-        
+
+        {/* ✅ Footer */}
+        <footer className="bg-white/60 mt-20 py-6 text-center text-sm text-gray-600 rounded-t-xl shadow-inner">
+          <p>© {new Date().getFullYear()} Mend AI. All rights reserved.</p>
+          <p className="mt-1 text-xs">Made with 💚 for your peace of mind.</p>
+        </footer>
     </main>
   );
 }
