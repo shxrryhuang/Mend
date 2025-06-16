@@ -10,7 +10,8 @@ export default function About() {
       </p>
       <ul className="mt-6 list-disc pl-5 text-gray-700">
         <li>📍 New York City</li>
-        <li>💼 Software Engineer at [Your Company]</li>
+        <li>💡 React, Next.js, Tailwind CSS</li>
+        <li>🚀 AI Software Engineer at Lockheed Martin  </li>
         <li>💻 Passionate about full-stack development and clean UI</li>
       </ul>
     </div>
