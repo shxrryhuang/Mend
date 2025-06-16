@@ -76,5 +76,5 @@ How it’s better: AI adapts your workflow based on mood, burnout signs, or rece
 
 Treats emotion as a first-class input in productivity.
 
-
+AI idea that will understand your schedule, helps you work around them to boost 
  */
