@@ -88,25 +88,7 @@ export default function HomePage() {
           </div>
         </div>
       </motion.section>
-
-       {/* Stats Section */}
-      <motion.section className="max-w-5xl mx-auto text-center px-4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-        <h2 className="text-2xl font-semibold mb-6">Trusted by thousands</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <div>
-            <p className="text-4xl font-bold text-teal-600">{users.toLocaleString()}</p>
-            <p className="text-sm text-gray-700">Users Supported</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold text-teal-600">{journals.toLocaleString()}</p>
-            <p className="text-sm text-gray-700">Journal Entries Logged</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold text-teal-600">{satisfaction}%</p>
-            <p className="text-sm text-gray-700">Satisfaction Rate</p>
-          </div>
-        </div>
-      </motion.section>
+      
         {/* Why Mend AI */}
         <motion.section
           className="max-w-5xl mx-auto py-20 px-4"
