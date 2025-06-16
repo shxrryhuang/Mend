@@ -2,11 +2,10 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-
 export default function HomePage() {
   const [showIntro, setShowIntro] = useState(false)
   const [typedText, setTypedText] = useState('')
-  const fullText = 'Hello there! Welcome :)'
+  const fullText = 'Welcome to Mend'
 
   useEffect(() => {
     setShowIntro(true)
@@ -36,15 +35,7 @@ export default function HomePage() {
           showIntro ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        I’m Sherry, a software engineer passionate about building modern web apps with Next.js and Tailwind CSS.
-      </p>
-
-      {/* 🛎️ Pulse Call-to-Action */}
-      <Link href="/projects" scroll={false}>
-        <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg animate-pulse hover:animate-none">
-          View My Projects
-        </button>
-      </Link>
+      Here, you will have a safe space to explore, reflect, and to focus on becoming the best version of yourself. </p>
     </main>
   )
 }
