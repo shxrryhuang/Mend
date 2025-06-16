@@ -25,38 +25,51 @@ export default function HomePage() {
         </p>
       </motion.section>
 
-      {/* About Section */}
+      {/* Key features Section */}
       <motion.section
-        className="max-w-3xl mx-auto"
+        className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 items-start py-16 px-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeInUp}
       >
-        <h2 className="text-3xl font-semibold text-teal-600 mb-4">start your customized self-discovery journey today 🌱 </h2>
+        {/* Key Features List */}
+        <div className="md:w-1/2">
+          <h2 className="text-3xl font-semibold text-teal-600 mb-6">
+            Start your customized self-discovery journey today 🌱
+          </h2>
 
-        <p className="mb-4 text-lg">
-          Sometimes you just need to let it out—no judgment, no pressure. That’s what Mend AI is for.
-        </p>
-        <p className="mb-4 text-lg">
-          It listens when no one else is around, helps you untangle your thoughts, and reminds you that you’re not alone.
-        </p>
-        <p className="mb-4 text-lg">
-          Whether you're feeling overwhelmed, stuck, or just need a safe space, it's here—day or night.
-        </p>
-        <p className="mb-4 text-lg">
-          Built with empathy and privacy at its core, Mend AI is support that never leaves your side.
-        </p>
+          <h3 className="text-2xl font-semibold mb-4">Key Features</h3>
+          <ul className="list-disc list-inside space-y-2 text-lg text-gray-800">
+            <li>AI-powered journaling and reflection prompts</li>
+            <li>Emotion tracking and visualization</li>
+            <li>Guided CBT-based exercises</li>
+            <li>Mood check-ins and goal reminders</li>
+            <li>Secure, anonymous usage</li>
+          </ul>
+        </div>
 
-        <h3 className="text-2xl font-semibold mt-10 mb-4">Key Features</h3>
-        <ul className="list-disc list-inside space-y-2 text-lg text-gray-800">
-          <li>AI-powered journaling and reflection prompts</li>
-          <li>Emotion tracking and visualization</li>
-          <li>Guided CBT-based exercises</li>
-          <li>Mood check-ins and goal reminders</li>
-          <li>Secure, anonymous usage</li>
-        </ul>
+        {/* 2x2 Image Grid */}
+        <div className="grid grid-cols-2 gap-4 md:w-1/2">
+          {/* Image 1: journaling.gif */}
+          <div className="w-full aspect-square rounded-xl overflow-hidden shadow-md">
+            <img src="/animations/journaling.gif" alt="Journaling" className="w-full h-full object-cover" />
+          </div>
+          {/* Image 2: emotions.gif */}
+          <div className="w-full aspect-square rounded-xl overflow-hidden shadow-md">
+            <img src="/animations/emotions.gif" alt="Emotion tracking" className="w-full h-full object-cover" />
+          </div>
+          {/* Image 3: growth.gif */}
+          <div className="w-full aspect-square rounded-xl overflow-hidden shadow-md">
+            <img src="/animations/growth.gif" alt="Growth" className="w-full h-full object-cover" />
+          </div>
+          {/* Image 4: privacy.gif */}
+          <div className="w-full aspect-square rounded-xl overflow-hidden shadow-md">
+            <img src="/animations/privacy.gif" alt="Secure" className="w-full h-full object-cover" />
+          </div>
+        </div>
       </motion.section>
+
 
         {/* Why Mend AI Section */}
         <motion.section
