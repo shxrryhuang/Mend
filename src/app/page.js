@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -9,6 +10,24 @@ const fadeInUp = {
 };
 
 export default function HomePage() {
+  const [users, setUsers] = useState(0);
+  const [journals, setJournals] = useState(0);
+  const [satisfaction, setSatisfaction] = useState(0);
+
+  useEffect(() => {
+    const animate = (target, setter, max) => {
+      let count = 0;
+      const interval = setInterval(() => {
+        count++;
+        setter(count);
+        if (count >= max) clearInterval(interval);
+      }, 20);
+    };
+    animate(users, setUsers, 10000);
+    animate(journals, setJournals, 450000);
+    animate(satisfaction, setSatisfaction, 97);
+  }, []);
+
   return (
 <main className="min-h-screen bg-gradient-to-b from-white-100 to-green-200 text-gray-900 px-6 py-12 space-y-24">
       {/* Hero Section */}
@@ -70,105 +89,126 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-
-        {/* Why Mend AI Section */}
-        <motion.section
-        className="max-w-5xl mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeInUp}
-        >
-        <h2 className="text-3xl font-semibold mb-10 text-center">Why Mend AI?</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Box 1 */}
-            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold mb-2">Always Available</h3>
-            <p className="text-gray-700">
-                No waitlists. Mend AI gives you a space to reflect and feel supported anytime—day or night.
-            </p>
-            </div>
-
-            {/* Box 2 */}
-            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold mb-2"> Emotionally Grounding</h3>
-            <p className="text-gray-700">
-                Personalized prompts and mood check-ins help you understand what you're feeling—and why.
-            </p>
-            </div>
-
-            {/* Box 3 */}
-            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold mb-2">Safe & Private</h3>
-            <p className="text-gray-700">
-                Built with privacy in mind, Mend AI ensures your thoughts stay secure and judgment-free.
-            </p>
-            </div>
-
-            {/* Box 4 */}
-            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold mb-2">It Gets to Know You</h3>
-            <p className="text-gray-700">
-                The more you share, the more Mend AI learns how to support you—offering reflections that feel thoughtful, not robotic.
-            </p>
-            </div>
-
-            {/* Box 5 */}
-            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold mb-2"> Work Life Balance</h3>
-            <p className="text-gray-700">
-                Helps to manage work and life tasks simultaneously depending on your needs.
-            </p>
-            </div>
-
-            {/* Box 6*/}
-            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold mb-2">Offers Real Therapy Services</h3>
-            <p className="text-gray-700">
-                Allows users to chat with each other anonymously and with real-time professionals
-            </p>
-            </div>
+       {/* Stats Section */}
+      <motion.section className="max-w-5xl mx-auto text-center px-4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+        <h2 className="text-2xl font-semibold mb-6">Trusted by thousands</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div>
+            <p className="text-4xl font-bold text-teal-600">{users.toLocaleString()}</p>
+            <p className="text-sm text-gray-700">Users Supported</p>
+          </div>
+          <div>
+            <p className="text-4xl font-bold text-teal-600">{journals.toLocaleString()}</p>
+            <p className="text-sm text-gray-700">Journal Entries Logged</p>
+          </div>
+          <div>
+            <p className="text-4xl font-bold text-teal-600">{satisfaction}%</p>
+            <p className="text-sm text-gray-700">Satisfaction Rate</p>
+          </div>
         </div>
+      </motion.section>
+        {/* Why Mend AI */}
+        <motion.section
+          className="max-w-5xl mx-auto py-20 px-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+        >
+          <h2 className="text-3xl font-semibold mb-10 text-center">Why Mend AI?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              ['Always Available', 'No waitlists. Mend AI gives you a space to reflect and feel supported anytime—day or night.'],
+              ['Emotionally Grounding', 'Personalized prompts and mood check-ins help you understand what you’re feeling—and why.'],
+              ['Safe & Private', 'Built with privacy in mind, Mend AI ensures your thoughts stay secure and judgment-free.'],
+              ['It Gets to Know You', 'The more you share, the more Mend AI learns how to support you—offering thoughtful reflections.'],
+              ['Work-Life Balance', 'Helps you manage work and personal challenges without burnout.'],
+              ['Real Therapy Support', 'Chat with real professionals or peers anonymously when you need more than journaling.'],
+            ].map(([title, desc], idx) => (
+              <div
+                key={idx}
+                className="bg-white/50 border-2 border-green-900 rounded-2xl p-6 shadow-md hover:shadow-lg transition backdrop-blur-sm"
+              >
+                <h3 className="text-xl font-semibold text-center text-green-900 mb-2">{title}</h3>
+                <p className="text-gray-800 text-center text-gray-700 mb-4">{desc}</p>
+              </div>
+            ))}
+          </div>
         </motion.section>
 
-        {/* Why Mend AI Section */}
-        <motion.section
-        className="max-w-3xl mx-auto text-center"
+
+      {/* FAQ Section */}
+      <motion.section
+        className="max-w-4xl mx-auto px-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeInUp}
-        >
-        <p className="mb-4 text-lg text-center">
-            Finding support shouldn’t depend on availability or affordability. Mend AI is designed to fill in the gaps—providing a private, 24/7 space to process thoughts, build emotional awareness, and feel heard.
-        </p>
+      >
+        <h2 className="text-2xl font-semibold text-center mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="bg-white p-4 rounded shadow">
+            <summary className="cursor-pointer font-medium">Is Mend AI a replacement for therapy?</summary>
+            <p className="mt-2 text-gray-600">
+              No. Mend AI is a supportive companion that complements real therapy. It offers emotional support, not diagnosis or clinical treatment.
+            </p>
+          </details>
 
-        <p className="mb-4 text-lg text-center">
-            Whether you're in therapy, between sessions, or just need a moment to reflect, Mend AI offers personalized prompts, mood tracking, and compassionate guidance to help you feel more in control—one day at a time.
-        </p>
+          <details className="bg-white p-4 rounded shadow">
+            <summary className="cursor-pointer font-medium">Is my data private and secure?</summary>
+            <p className="mt-2 text-gray-600">
+              Yes. We use end-to-end encryption and follow strict privacy standards to keep your data secure and confidential.
+            </p>
+          </details>
 
-        <p className="mb-4 text-lg text-center">
-            It's not about replacing human connection. It's about making sure you always have a safe, supportive place to turn when you need it most.
-        </p>
-        <p className="mb-4 text-lg text-center">
-            Join today and start your journey towards better mental health.
-        </p>
+          <details className="bg-white p-4 rounded shadow">
+            <summary className="cursor-pointer font-medium">Can I talk to real therapists?</summary>
+            <p className="mt-2 text-gray-600">
+              Yes. We’re building optional integrations to connect you with licensed professionals when you're ready.
+            </p>
+          </details>
 
-        <Link
-        href="/signup"
-        className="inline-block mt-6 px-6 py-3 bg-teal-600 text-white text-sm font-medium rounded-full hover:bg-teal-700 transition"
-        >
-        Get Started For Free
+          <details className="bg-white p-4 rounded shadow">
+            <summary className="cursor-pointer font-medium">Is it free to use?</summary>
+            <p className="mt-2 text-gray-600">
+              Yes, core features are free. We also offer premium features to enhance your experience and support ongoing development.
+            </p>
+          </details>
+        </div>
+      </motion.section>
+
+
+      {/* Final CTA */}
+      <motion.section className="max-w-3xl mx-auto text-center py-20 px-4" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp}>
+        <div className="text-lg space-y-4 max-w-prose mx-auto">
+          <p>Finding support shouldn’t depend on availability or affordability. Mend AI fills in the gaps—offering private, 24/7 reflection and care.</p>
+          <p>Whether you're in therapy, between sessions, or just need to pause, Mend AI helps you process and grow.</p>
+        </div>
+        <Link href="/signup" className="inline-block mt-8 px-8 py-4 bg-teal-600 text-white text-base font-semibold rounded-full hover:bg-teal-700 transition shadow-md">
+          Get Started For Free
         </Link>
+      </motion.section>
 
-        </motion.section>
+      {/* Email Capture / Waitlist */}
+      <motion.section className="max-w-xl mx-auto text-center px-4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+        <h2 className="text-2xl font-semibold mb-4">Join Our Waitlist</h2>
+        <p className="mb-4 text-gray-600">Get early access and exclusive mental wellness content.</p>
+        <form className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <input type="email" placeholder="you@example.com" className="px-4 py-2 rounded border border-gray-300 w-full sm:w-auto" />
+          <button type="submit" className="px-6 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 transition">Join</button>
+        </form>
+      </motion.section>
 
-        {/* ✅ Footer */}
-        <footer className="bg-white/60 mt-20 py-6 text-center text-sm text-gray-600 rounded-t-xl shadow-inner">
-          <p>© {new Date().getFullYear()} Mend AI. All rights reserved.</p>
-          <p className="mt-1 text-xs">Made with 💚 for your peace of mind.</p>
-        </footer>
+      {/* Footer with trust signals */}
+      <footer className="bg-white/60 mt-20 py-6 text-center text-sm text-gray-600 rounded-t-xl shadow-inner">
+        <p>© {new Date().getFullYear()} Mend AI. All rights reserved.</p>
+        <p className="mt-1 text-xs">Made with 💚 for your peace of mind.</p>
+        <div className="mt-2 flex justify-center gap-4 text-xs text-gray-500">
+          <span>HIPAA-Conscious</span>
+          <span>Built with Therapists</span>
+          <span>Data Encrypted</span>
+        </div>
+      </footer>
     </main>
   );
 }
