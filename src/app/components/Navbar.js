@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        <Link href="/" className="text-2xl font-bold text-blue-600">Mend</Link>
+        <Link href="/" className="text-2xl font-bold text-teal-600">Mend</Link>
         <div className="sm:hidden">
           <button onClick={() => setOpen(!open)}>
             <span className="text-2xl">{open ? '✕' : '☰'}</span>
