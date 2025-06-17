@@ -67,14 +67,3 @@ export default function SignupPage() {
     </div>
   );
 }
-
-/**AI idea that will understand your schedule, helps you work around them to boost productivity.
- * Beyond: Time tracking or to-do lists
-How it’s better: AI adapts your workflow based on mood, burnout signs, or recent emotional loads.
-
-“You were in 6 draining calls yesterday. Moving deep work block to 2 PM and canceling one sync.”
-
-Treats emotion as a first-class input in productivity.
-
-AI idea that will understand your schedule, helps you work around them to boost 
- */

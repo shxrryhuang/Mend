@@ -33,7 +33,7 @@ export default function Navbar() {
           ) : (
             <>
               <Link href="/login" className="text-teal-600 hover">Login</Link>
-              <Link hr                            ef="/signup" className="text-teal-600 hover">Sign Up</Link>
+              <Link href="/signup" className="text-teal-600 hover">Sign Up</Link>
             </>
           )}
         </div>
