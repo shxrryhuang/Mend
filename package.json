@@ -1,24 +1,46 @@
 {
-  "name": "testaii",
-  "version": "0.1.0",
-  "private": true,
+  "name": "mend",
+  "version": "1.0.0",
+  "description": "Mend AI — A journaling and productivity assistant",
+  "author": "Sherry Huang",
+  "main": "main.js",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "export": "next build && next export",
+    "electron": "electron .",
+    "dist": "npm run export && electron-builder"
+  },
+  "build": {
+    "appId": "com.mend.ai",
+    "productName": "Mend AI",
+    "copyright": "Copyright © 2025 Mend AI",
+    "files": [
+      "out",
+      "main.js"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   },
   "dependencies": {
     "framer-motion": "^12.18.1",
     "next": "15.3.3",
     "next-auth": "^4.24.11",
-    "openai": "^5.5.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.10",
     "autoprefixer": "^10.4.21",
+    "electron": "^28.0.0",
+    "electron-builder": "^26.0.12",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.10"
   }
