@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Document, Packer, Paragraph, TextRun } from 'docx';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -10,7 +11,7 @@ const fadeInUp = {
 
 export default function JournalPage() {
   const [input, setInput] = useState('');
-  const [tasks, setTasks] = useState([]);
+  const [folders, setFolders] = useState({});
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState('');
   const [error, setError] = useState('');
@@ -33,13 +34,14 @@ export default function JournalPage() {
       }
 
       const data = await res.json();
+      const newDate = data.date || new Date().toISOString().split('T')[0];
+      const existingTasks = folders[newDate] || [];
 
-      if (!data.todos || !Array.isArray(data.todos)) {
-        throw new Error('Invalid response format');
-      }
-
-      setTasks([...tasks, ...data.todos]);
-      setDate(data.date || '');
+      setFolders({
+        ...folders,
+        [newDate]: [...existingTasks, ...data.todos],
+      });
+      setDate(newDate);
       setInput('');
     } catch (err) {
       console.error('Failed to parse task:', err);
@@ -49,6 +51,47 @@ export default function JournalPage() {
     }
   };
 
+  const exportFolder = async (folderDate) => {
+    const tasks = folders[folderDate];
+  
+    const paragraphs = tasks.map((task, index) => {
+      return new Paragraph({
+        children: [
+          new TextRun({ text: `Task ${index + 1}: ${task.task}`, bold: true }),
+          new TextRun({ text: `\nTime: ${task.time}` }),
+          new TextRun({ text: `\nCategory: ${task.category}` }),
+          new TextRun({ text: `\nPriority: ${task.priority}` }),
+          new TextRun({ text: `\n\n` }),
+        ],
+      });
+    });
+  
+    const doc = new Document({
+      sections: [
+        {
+          properties: {},
+          children: [
+            new Paragraph({
+              children: [new TextRun({ text: `Tasks for ${folderDate}`, bold: true, size: 28 })],
+            }),
+            ...paragraphs,
+          ],
+        },
+      ],
+    });
+  
+    const blob = await Packer.toBlob(doc);
+    const url = URL.createObjectURL(blob);
+  
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `tasks-${folderDate}.docx`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+  
   return (
     <main className="min-h-screen p-8 bg-gradient-to-b from-white to-teal-100 text-gray-900">
       <motion.section
@@ -80,28 +123,31 @@ export default function JournalPage() {
           </button>
         </div>
 
-        {error && (
-          <div className="text-red-600 mb-4">
-            <p>{error}</p>
-          </div>
-        )}
+        {error && <p className="text-red-600 mb-4">{error}</p>}
 
-        {date && (
-          <div className="mb-6 text-left">
-            <h2 className="text-xl font-semibold text-teal-800">Tasks for {date}</h2>
+        {Object.keys(folders).sort((a, b) => b.localeCompare(a)).map((folderDate) => (
+          <div key={folderDate} className="mb-10 text-left">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-teal-800">Tasks for {folderDate}</h2>
+              <button
+                onClick={() => exportFolder(folderDate)}
+                className="text-sm bg-gray-300 hover:bg-gray-400 px-3 py-1 rounded"
+              >
+                Export
+              </button>
+            </div>
+            <ul className="space-y-4 mt-4">
+              {folders[folderDate].map((task, idx) => (
+                <li key={idx} className="bg-white p-4 rounded shadow">
+                  <p><strong>Task:</strong> {task.task}</p>
+                  <p><strong>Time:</strong> {task.time}</p>
+                  <p><strong>Category:</strong> {task.category}</p>
+                  <p><strong>Priority:</strong> {task.priority}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-        )}
-
-        <ul className="space-y-4">
-          {tasks.map((task, idx) => (
-            <li key={idx} className="bg-white p-4 rounded shadow text-left">
-              <p><strong>Task:</strong> {task.task}</p>
-              <p><strong>Time:</strong> {task.time}</p>
-              <p><strong>Category:</strong> {task.category}</p>
-              <p><strong>Priority:</strong> {task.priority}</p>
-            </li>
-          ))}
-        </ul>
+        ))}
       </motion.section>
     </main>
   );
