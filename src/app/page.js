@@ -139,7 +139,7 @@ export default function HomePage() {
           <details className="bg-white p-4 rounded shadow">
             <summary className="cursor-pointer font-medium">Is my data private and secure?</summary>
             <p className="mt-2 text-gray-600">
-              Yes. We use end-to-end encryption and follow strict privacy standards to keep your data secure and confidential.
+              Yes. We use end-to-end encryption & follow strict privacy standards to keep your data secure and confidential.
             </p>
           </details>
 

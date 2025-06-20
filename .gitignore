@@ -23,4 +23,4 @@ pids/
 *.pid
 *.seed
 *.pid.lock
-logs/
+logs/mend-backup/
