@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -11,17 +10,21 @@ export default function SignupPage() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const res = await fetch('/api/signup', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
 
-    if (res.ok) {
+    try {
+      // Replace this with actual backend call or mock
+      const users = JSON.parse(localStorage.getItem('users') || '{}');
+
+      if (users[email]) {
+        setError('User already exists');
+        return;
+      }
+
+      users[email] = { email, password };
+      localStorage.setItem('users', JSON.stringify(users));
       router.push('/login');
-    } else {
-      const data = await res.json();
-      setError(data.error || 'Signup failed');
+    } catch (err) {
+      setError('Signup failed');
     }
   };
 
@@ -54,15 +57,9 @@ export default function SignupPage() {
         </button>
       </form>
 
-      {/* Sign up with Google button */}
-      <div className="text-center">
-        <p className="text-gray-500 mb-2">or</p>
-        <button
-          onClick={() => signIn('google')}
-          className="w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600"
-        >
-          Sign up with Google
-        </button>
+      {/* Optional: Placeholder for social sign up (not implemented) */}
+      <div className="text-center text-sm text-gray-500">
+        Google Sign-in not available in offline app
       </div>
     </div>
   );

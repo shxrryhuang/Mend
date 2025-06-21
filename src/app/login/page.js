@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
@@ -11,21 +10,25 @@ export default function LoginPage() {
   const [remember, setRemember] = useState(true);
   const [error, setError] = useState('');
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
-    const result = await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-      remember: remember.toString(), // pass as string
-    });
+    const users = JSON.parse(localStorage.getItem('users') || '{}');
+    const user = users[email];
 
-    if (result?.ok) {
-      router.push('/');
-    } else {
+    if (!user || user.password !== password) {
       setError('Invalid email or password');
+      return;
     }
+
+    // Store active user session
+    if (remember) {
+      localStorage.setItem('user', email);
+    } else {
+      sessionStorage.setItem('user', email);
+    }
+
+    router.push('/');
   };
 
   return (
@@ -74,13 +77,8 @@ export default function LoginPage() {
         </button>
       </form>
 
-      <div className="w-full max-w-md">
-        <button
-          onClick={() => signIn('google')}
-          className="w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600"
-        >
-          Sign in with Google
-        </button>
+      <div className="w-full max-w-md text-center text-sm text-gray-500">
+        Google login not available in offline app
       </div>
     </div>
   );

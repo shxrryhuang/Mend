@@ -1,11 +1,20 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useSession, signOut } from 'next-auth/react';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { data: session } = useSession();
+  const [user, setUser] = useState(null); // ✅ fixed
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    setUser(storedUser);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+  };
 
   return (
     <nav className="bg-white shadow-md">
@@ -21,11 +30,11 @@ export default function Navbar() {
           <Link href="/" className="text-gray-700 hover:text-teal-600">Home</Link>
           <Link href="/hiring" className="text-gray-700 hover:text-teal-600">Hiring</Link>
           <Link href="/journal" className="text-gray-700 hover:text-teal-600">Journal</Link>
-          {session?.user ? (
+          {user ? (
             <>
-              <span className="text-gray-700">Hi, {session.user.email}</span>
+              <span className="text-gray-700">Hi, {user}</span>
               <button
-                onClick={() => signOut()}
+                onClick={handleLogout}
                 className="text-red-600 hover:text-red-800 underline"
               >
                 Logout
@@ -33,8 +42,8 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login" className="text-teal-600 hover">Login</Link>
-              <Link href="/signup" className="text-teal-600 hover">Sign Up</Link>
+              <Link href="/login" className="text-teal-600 hover:underline">Login</Link>
+              <Link href="/signup" className="text-teal-600 hover:underline">Sign Up</Link>
             </>
           )}
         </div>

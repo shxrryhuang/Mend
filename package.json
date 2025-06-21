@@ -9,7 +9,8 @@
     "build": "next build",
     "export": "next build && next export",
     "electron": "electron .",
-    "dist": "npm run export && electron-builder"
+    "build:mend": "NEXT_PUBLIC_MODE=desktop-only next build",
+    "dist": "npm run build:mend && electron-builder"
   },
   "build": {
     "appId": "com.mend.ai",

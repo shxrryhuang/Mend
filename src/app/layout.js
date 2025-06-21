@@ -1,6 +1,5 @@
 'use client';
 
-import { SessionProvider } from 'next-auth/react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Navbar from './components/Navbar';
 import './globals.css';
@@ -12,12 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <SessionProvider>
-          <Navbar />
-          <div className="flex flex-col min-h-screen">
-            {children}
-          </div>
-        </SessionProvider>
+        <Navbar />
+        <div className="flex flex-col min-h-screen">
+          {children}
+        </div>
       </body>
     </html>
   );
