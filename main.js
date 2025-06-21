@@ -1,18 +1,28 @@
-const { app, BrowserWindow } = require('electron');
+// ===============================
+// main.js for Electron App
+// ===============================
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
+let mainWindow;
+
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 1200,
+  mainWindow = new BrowserWindow({
+    width: 1000,
     height: 800,
     webPreferences: {
-      nodeIntegration: false,
-    },
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false
+    }
   });
 
-  // Loads the static HTML output from Next.js
-  win.loadFile(path.join(__dirname, 'out/index.html'));
+  mainWindow.loadFile('out/login/index.html');
 }
+
+ipcMain.on('auth-success', () => {
+  mainWindow.loadFile('out/journal/index.html');
+});
 
 app.whenReady().then(createWindow);
 
