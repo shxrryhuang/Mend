@@ -32,16 +32,23 @@ export default function HomePage() {
 <main className="min-h-screen bg-gradient-to-b from-white-100 to-teal-200 text-gray-900 px-6 py-12 space-y-24">
       {/* Hero Section */}
       <motion.section
-        className="text-center"
+        className="text-center flex flex-col items-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
       >
-    <h1 className="text-5xl font-bold text-teal-700 mb-4">Mend AI </h1>  
-        <p className="text-lg text-gray-700">
+        <h1 className="text-5xl font-bold text-teal-700 mb-4">Mend AI</h1>  
+        <p className="text-lg text-gray-700 mb-4">
           Your private, always-there mental health companion.
         </p>
+        <a
+          href="/downloads/mendAI.dmg"
+          download
+          className="inline-block mt-4 px-6 py-3 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-shadow shadow-md"
+        >
+          Download for Mac
+        </a>
       </motion.section>
 
       {/* Key features Section */}
