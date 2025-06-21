@@ -43,7 +43,6 @@ export default function Navbar() {
           ) : (
             <>
               <Link href="/login" className="text-teal-600 hover:underline">Login</Link>
-              <Link href="/signup" className="text-teal-600 hover:underline">Sign Up</Link>
             </>
           )}
         </div>
