@@ -10,7 +10,9 @@
     "export": "next build && next export",
     "electron": "electron .",
     "build:mend": "NEXT_PUBLIC_MODE=desktop-only next build",
-    "dist": "npm run build:mend && electron-builder"
+    "dist": "npm run build:mend && electron-builder",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out"
   },
   "build": {
     "appId": "com.mend.ai",
@@ -31,6 +33,7 @@
     }
   },
   "dependencies": {
+    "docx": "^9.5.1",
     "framer-motion": "^12.18.1",
     "next": "15.3.3",
     "next-auth": "^4.24.11",
@@ -42,7 +45,9 @@
     "autoprefixer": "^10.4.21",
     "electron": "^28.0.0",
     "electron-builder": "^26.0.12",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.10"
-  }
+  },
+  "homepage": "https://shxrryhuang.github.io/Mend"
 }

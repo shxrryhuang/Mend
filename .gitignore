@@ -4,6 +4,8 @@ node_modules/
 # Next.js build output
 .next/
 out/
+dist 
+build/
 
 # Local environment files
 .env
@@ -24,3 +26,6 @@ pids/
 *.seed
 *.pid.lock
 logs/mend-backup/
+.vercel
+mend-backup/
+electron/
