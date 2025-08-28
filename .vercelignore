@@ -1,0 +1,26 @@
+# Don’t send dependencies or local builds
+node_modules
+.next
+dist
+build
+out
+
+# Electron artifacts
+*.dmg
+*.exe
+*.AppImage
+*.snap
+release/
+
+# Large media files (host elsewhere)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.zip
+*.tar.gz
+
+# Docs/backups
+docs/
+*.pdf
+*.bak
