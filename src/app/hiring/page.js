@@ -36,7 +36,7 @@ export default function HiringPage() {
         <p className="text-gray-700 mb-6">
          Drop us a line at{' '}
           <a href="mailto:careers@mendai.app" className="text-teal-600 underline">
-            careers@mendai.app
+            careers@mendai.app (currently inapplicable)
           </a>
           .
         </p>

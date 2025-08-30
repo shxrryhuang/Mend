@@ -27,7 +27,6 @@ export default function Navbar() {
         </div>
 
         <div className={`sm:flex items-center space-x-6 ${open ? 'block' : 'hidden'}`}>
-          <Link href="/" className="text-gray-700 hover:text-teal-600">Home</Link>
           <Link href="/hiring" className="text-gray-700 hover:text-teal-600">Hiring</Link>
           <Link href="/journal" className="text-gray-700 hover:text-teal-600">Journal</Link>
           {user ? (
